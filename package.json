@@ -23,7 +23,9 @@
     "README.md"
   ],
   "scripts": {
-    "build": "yarn install && yarn webpack"
+    "build": "yarn install && yarn webpack",
+    "login": "npm login",
+    "publish": "npm publish"
   },
   "bugs": {
     "url": "https://github.com/CoolBytesIN/editorjs-anchor/issues"
