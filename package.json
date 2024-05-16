@@ -43,7 +43,6 @@
     "webpack-cli": "^5.1.4"
   },
   "publishConfig": {
-    "access": "public",
-    "CoolByteIN:registry": "https://npm.pkg.github.com"
+    "access": "public"
   }
 }
