@@ -1,12 +1,16 @@
-# Anchor Block Tune for Editor.js
+# Anchor block tune for Editor.js
 
-This [Editor.js](https://editorjs.io/) block tune lets you add/remove an anchor to any block tool. This can help target a specific HTML element within a webpage for navigation.
+This [Editor.js](https://editorjs.io/) block tune enables users to add or remove an anchor to any block tool. Anchors provide the ability to target specific HTML elements within a webpage, aiding in seamless navigation.
 
 A few points to note:
-* This block tune is accessible from the Block Settings menu.
-* When selected, the first 50 (or user configured length) characters of the block text will be used as the anchor value.
-  * While doing so, spaces are replaced with underscores. And all characters except for a-z, 0-9, _ (underscore), - (hyphen) will be ignored.
-* If you click the settings button after selecting an anchor, it will reset/remove the anchor. So, the button acts like a toggle.
+* This block tune can be accessed from the Block Settings menu (see [Preview](https://github.com/CoolBytesIN/editorjs-anchor?tab=readme-ov-file#preview)).
+* This button functions as a toggle, allowing you to effortlessly add or remove an anchor with a click. When an anchor is added, the button color changes to indicate its selected state.
+* No string input is required for the anchor. When this block tune is selected, it automatically picks the first 30 characters (or user-configured length) from the block text. And if the block text is empty, no anchor will be added.
+* The anchor value does not automatically update with changes to the block text.
+* To avoid unsafe URL chracters and to improve readability, only a few characters (from the block text) are retained for the anchor value.
+  * All characters except these will be ignored: a-z, 0-9, _ (underscore), - (hyphen).
+  * The anchor value will begin and end with a alpha-numeric character, other trailing and leading characters are ignored.
+  * Whitespace between the words is replaced with an underscore.
 
 ## Preview
 
@@ -55,9 +59,11 @@ const editor = new EditorJS({
 
 ## Config Params
 
-|Field|Type|Description|
-|---|---|---|
-|anchorLength|number|Maximum length (no. of characters) of the anchor value|
+|Field|Type|Default|Description|
+|---|---|---|---|
+|anchorLength|number|30|Maximum length (no. of characters) of the anchor value|
+
+&nbsp;
 
 ```js
 const editor = EditorJS({
@@ -65,7 +71,7 @@ const editor = EditorJS({
     anchor: {
       class: Anchor,
       config: {
-        anchorLength: 50
+        anchorLength: 30
       }
     }
   },
@@ -79,16 +85,18 @@ const editor = EditorJS({
 |---|---|
 |string|Anchor value|
 
+&nbsp;
+
 Example for [Paragraph Tool](https://github.com/editor-js/paragraph):
 
 ```json
 {
   "type": "paragraph",
   "data": {
-    "text": "Some paragraph text for testing"
+    "text": "Some paragraph to test the anchor block tune"
   },
   "tunes": {
-    "anchor": "Some_paragraph_text_for_testing"
+    "anchor": "Some_paragraph_to_test_the_anc"
   }
 }
 ```

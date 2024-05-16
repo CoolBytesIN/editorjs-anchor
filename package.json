@@ -1,7 +1,7 @@
 {
   "name": "@coolbytes/editorjs-anchor",
-  "description": "Editor.js Block Tune to add an anchor to any Block Tool",
-  "version": "1.0.0",
+  "description": "Anchor block tune for Editor.js",
+  "version": "1.0.1",
   "private": false,
   "homepage": "https://github.com/CoolBytesIN/editorjs-anchor/blob/main/README.md",
   "license": "MIT",
@@ -24,8 +24,7 @@
   ],
   "scripts": {
     "build": "yarn install && yarn webpack",
-    "login": "npm login",
-    "publish": "npm publish"
+    "ready": "npm login"
   },
   "bugs": {
     "url": "https://github.com/CoolBytesIN/editorjs-anchor/issues"

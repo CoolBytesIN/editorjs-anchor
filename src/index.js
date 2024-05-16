@@ -1,9 +1,9 @@
-const anchorIcon = require('./icon.js');
+const anchorIcon = require('./icons/anchor.js');
 
 /**
  * Anchor Block Tune for Editor.js
  * Supported config:
- *     * anchorLength {number} (Default: 50)
+ *     * anchorLength {number} (Default: 30)
  *
  * @class Anchor
  * @typedef {Anchor}
@@ -28,7 +28,7 @@ export default class Anchor {
    * @type {number}
    */
   static get DEFAULT_ANCHOR_LENGTH() {
-    return 50;
+    return 30;
   }
 
   /**
