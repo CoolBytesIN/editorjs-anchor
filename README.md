@@ -14,7 +14,7 @@ A few points to note:
 
 ## Preview
 
-![preview](https://api.coolbytes.in/media/handle/view/image/295/)
+![preview](https://api.coolbytes.in/media/handle/view/image/733dd8b3-68a7-4cf1-bcf6-5888fb526656/)
 
 ## Installation
 
