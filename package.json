@@ -1,7 +1,7 @@
 {
   "name": "@coolbytes/editorjs-anchor",
   "description": "Anchor block tune for Editor.js",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "private": false,
   "homepage": "https://apps.coolbytes.in/editorjs-anchor",
   "license": "MIT",
