@@ -67,7 +67,7 @@ const editor = new EditorJS({
 &nbsp;
 
 > [!NOTE]
-> (Default behavior) If neither `maxWords` nor `maxChars` are specified, the entire inner text of the element is used (ideal for adding anchors to header elements).
+> (Default behavior) If neither `maxWords` nor `maxChars` are specified, the entire inner text of the element is used (ideal for adding anchors to header elements). Only alphabets, numbers, hyphens and underscores are retained. Spaces are replaced with hyphens.
 
 > [!NOTE]
 > When both `maxWords` and `maxChars` are provided, `maxWords` takes precedence.

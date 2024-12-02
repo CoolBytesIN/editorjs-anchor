@@ -29,7 +29,6 @@ export default class Anchor {
    */
   constructor({ data, config, block }) {
     this._data = data || '';
-    // this._config = config;
     this._block = block;
     if (config.maxChars) {
       this._maxChars = parseInt(config.maxChars, 10);
@@ -47,18 +46,21 @@ export default class Anchor {
    */
   get currentAnchor() {
     if (this._data.length > 0) {
+      // Retain only specific characters
+      const anchorText = this._data.replace(/[^a-zA-Z0-9-_ ]/g, '');
+
       if (this._maxWords) {
         // Apply word limit if maxChars is not set
-        const words = this._data.split(/\s+/);
-        return words.slice(0, this._maxWords).join(' ');
+        const words = anchorText.split(/\s+/);
+        return words.slice(0, this._maxWords).join('-');
       }
 
       if (this._maxChars) {
         // Use character limit if maxChars is defined
-        return this._data.slice(0, this._maxChars).replace(/[\s_-]+$/, '');
+        return anchorText.replace(/\s+/g, '-').slice(0, this._maxChars).replace(/[\s_-]+$/, '');
       }
   
-      return this._data;
+      return anchorText;
     }
     return undefined;
   }
