@@ -60,7 +60,7 @@ export default class Anchor {
         return anchorText.replace(/\s+/g, '-').slice(0, this._maxChars).replace(/[\s_-]+$/, '');
       }
   
-      return anchorText;
+      return anchorText.replace(/\s+/g, '-');
     }
     return undefined;
   }
