@@ -59,9 +59,18 @@ const editor = new EditorJS({
 
 ## Config Params
 
-|Field|Type|Default|Description|
-|---|---|---|---|
-|anchorLength|number|30|Maximum length (no. of characters) of the anchor value|
+|Field|Type|Description|
+|---|---|---|
+|maxWords|number|Maximum number of words for the anchor value|
+|maxChars|number|Maximum number of characters for the anchor value|
+
+&nbsp;
+
+> [!NOTE]
+> (Default behavior) If neither `maxWords` nor `maxChars` are specified, the entire inner text of the element is used (ideal for adding anchors to header elements).
+
+> [!NOTE]
+> When both `maxWords` and `maxChars` are provided, `maxWords` takes precedence.
 
 &nbsp;
 
@@ -71,7 +80,7 @@ const editor = EditorJS({
     anchor: {
       class: Anchor,
       config: {
-        anchorLength: 30
+        maxWords: 4
       }
     }
   },
@@ -96,7 +105,7 @@ Example for [Paragraph Tool](https://github.com/editor-js/paragraph):
     "text": "Some paragraph to test the anchor block tune"
   },
   "tunes": {
-    "anchor": "Some_paragraph_to_test_the_anc"
+    "anchor": "Some paragraph to test"
   }
 }
 ```

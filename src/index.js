@@ -3,7 +3,8 @@ const anchorIcon = require('./icons/anchor.js');
 /**
  * Anchor Block Tune for Editor.js
  * Supported config:
- *     * anchorLength {number} (Default: 30)
+ *     * maxWords {number}
+ *     * maxChars {number}
  *
  * @class Anchor
  * @typedef {Anchor}
@@ -21,17 +22,6 @@ export default class Anchor {
   }
 
   /**
-   * Default Anchor Length
-   *
-   * @static
-   * @readonly
-   * @type {number}
-   */
-  static get DEFAULT_ANCHOR_LENGTH() {
-    return 30;
-  }
-
-  /**
    * Creates an instance of Anchor.
    *
    * @constructor
@@ -39,22 +29,14 @@ export default class Anchor {
    */
   constructor({ data, config, block }) {
     this._data = data || '';
-    this._config = config;
+    // this._config = config;
     this._block = block;
-  }
-
-  /**
-   * User's anchor length if provided (falls back to Default)
-   *
-   * @readonly
-   * @type {number}
-   */
-  get userAnchorLength() {
-    const userLength = parseInt(this._config.anchorLength, 10);
-    if (userLength) {
-      return userLength;
+    if (config.maxChars) {
+      this._maxChars = parseInt(config.maxChars, 10);
     }
-    return Anchor.DEFAULT_ANCHOR_LENGTH;
+    if (config.maxWords) {
+      this._maxWords = parseInt(config.maxWords, 10);
+    }
   }
 
   /**
@@ -64,19 +46,19 @@ export default class Anchor {
    * @type {string}
    */
   get currentAnchor() {
-    // Avoids these charaters at the beginning or ending - (_, -, whitespace)
-    // Replaces whitespace with underscore
-    // Allows only certain characters - alphabets, numbers, underscore and hyphen
-    // Truncates to defined length
-    // Removes trailing underscores or hyphens after truncation
-    const anchor = this._data
-      .replace(/^[ _-]+|[ _-]+$/g, '')
-      .replace(/ /g, '_')
-      .replace(/[^a-z0-9_-]/gi, '')
-      .slice(0, this.userAnchorLength)
-      .replace(/[_-]+$/, '');
-    if (anchor && anchor.length > 0) {
-      return anchor;
+    if (this._data.length > 0) {
+      if (this._maxWords) {
+        // Apply word limit if maxChars is not set
+        const words = this._data.split(/\s+/);
+        return words.slice(0, this._maxWords).join(' ');
+      }
+
+      if (this._maxChars) {
+        // Use character limit if maxChars is defined
+        return this._data.slice(0, this._maxChars).replace(/[\s_-]+$/, '');
+      }
+  
+      return this._data;
     }
     return undefined;
   }
