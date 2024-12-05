@@ -47,20 +47,20 @@ export default class Anchor {
   get currentAnchor() {
     if (this._data.length > 0) {
       // Retain only specific characters
-      const anchorText = this._data.replace(/[^a-zA-Z0-9-_ ]/g, '');
+      const anchorText = this._data.replace(/[^a-zA-Z0-9-_ ]/g, '').replace(/-/g, '_');
 
       if (this._maxWords) {
         // Apply word limit if maxChars is not set
         const words = anchorText.split(/\s+/);
-        return words.slice(0, this._maxWords).join('-');
+        return words.slice(0, this._maxWords).join('_');
       }
 
       if (this._maxChars) {
         // Use character limit if maxChars is defined
-        return anchorText.replace(/\s+/g, '-').slice(0, this._maxChars).replace(/[\s_-]+$/, '');
+        return anchorText.replace(/\s+/g, '_').slice(0, this._maxChars).replace(/[\s_-]+$/, '');
       }
   
-      return anchorText.replace(/\s+/g, '-');
+      return anchorText.replace(/\s+/g, '_');
     }
     return undefined;
   }
